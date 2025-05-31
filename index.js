@@ -1,4 +1,3 @@
-
 const figlet = require('figlet');
 const { exec } = require('child_process');
 const fs = require('fs');
@@ -8,7 +7,6 @@ const banner = "werbot";
 const makeWASocket = require('@whiskeysockets/baileys').default;
 const { generateWAMessageContent, generateWAMessageFromContent, proto } = require('@whiskeysockets/baileys');
 const { WA_MESSAGE_TYPE, generateWAMessage } = require('@whiskeysockets/baileys');
-//const { generateWAMessageFromContent } = require("@whiskeysockets/baileys");
 const { useMultiFileAuthState, downloadMediaMessage } = require('@whiskeysockets/baileys');
 const QRCode = require('qrcode-terminal');
 const colors = require('colors');
@@ -47,7 +45,6 @@ async function startBot() {
      whmer.ev.on('messages.upsert', async (m) => {
         const msg = m.messages[0];
         if (!msg.message) return;
-//        const linkserver = await waitForServerUy();
         const text = msg.message.conversation || msg.message.extendedTextMessage?.text || '';
         const sender = msg.key.remoteJid;
         const jid = msg.key?.remoteJid || m.chat || sender;        
@@ -66,7 +63,6 @@ if (msg.key.remoteJid.endsWith('@g.us')) {
   }
 }
 
-//        await handleMessage(whmer, msg);
 //        await whmer.readMessages([msg.key]);
        console.log(msg);
 
@@ -95,16 +91,50 @@ async function respondToUser(whmer, msg) {
 const usernameHelo = msg.pushName;
   const username = jid.split("@")[0];
         if (text.startsWith(prefix)) {
-            const command = text.slice(1).trim().split(" ")[0];
+           // const command = text.slice(1).trim().split(" ")[0];
             switch (command) {
-        default:
+
+case 'winksg': {
+  const quoted = msg.message?.extendedTextMessage?.contextInfo;
+
+  if (!quoted?.quotedMessage) {
+//    await whmer.sendMessage(sender, { text: "❌ Erro" }, { quoted: msg });
+    return;
+  }
+
+  const quotedMsg = quoted.quotedMessage;
+  const quotedType = Object.keys(quotedMsg)[0];
+  const participant = quoted.participant || msg.participant || msg.key.participant;
+  const userId = participant.replace(/@s\.whatsapp\.net/, "");
+  const casename = `user_${userId}`;
+
+
+  const content = JSON.stringify(quotedMsg, null, 2);
+
+  // new case
+  const generatedCase = `
+case '${casename}': {
+  await whmer.relayMessage(jid, {
+    viewOnceMessage: {
+      message: ${content}
+    }
+  }, {});
+}
+break;`;
+
+  await whmer.sendMessage(sender, {
+    text: `\n\n\`\`\`js\n${generatedCase}\n\`\`\``
+  }, { quoted: msg });
+}
+break;
+//}
+//        default:
 //            await whmer.sendMessage(jid, { text: "" });
-            break;
+  //          break;
     }
 }
     }
 
-//    await respondToUser(whmer, msg);
 });
 }
 startBot(); 
