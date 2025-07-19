@@ -90,9 +90,9 @@ const waitMinutes = (minutes) => {
   return new Promise(resolve => setTimeout(resolve, minutes * 60 * 1000));
 };
 
-            if (text === "Oi") {
+            if (text === "Bom dia") {
                 await waitMinutes(1);
-                await whmer.sendMessage(jid, { text: "Oie, tudo bem?" }, {quoted: msg});
+                await whmer.sendMessage(jid, { text: "Bom dia, tudo bem?" }, {quoted: msg});
             } else if (text === "hey ;-;") {  
            await whmer.relayMessage(jid, {
   viewOnceMessage: {
