@@ -49,8 +49,10 @@ async function startBot() {
         if (msg.key.remoteJid.endsWith('@g.us')) return; 
         console.log(msg);
         const text = msg.message.conversation || msg.message.extendedTextMessage?.text || '';
-        const sender = msg.key.remoteJid;
-        const jid = sender;
+const jid = msg.key.remoteJid;
+const sender = msg.key.participant || msg.key.remoteJid;
+//        const sender = msg.key.remoteJid;
+  //      const jid = sender;
         const usernameHelo = msg.pushName;
 
         let groupMetadata, isGroupAdmin, participantes;
