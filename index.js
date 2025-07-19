@@ -45,7 +45,7 @@ async function startBot() {
     whmer.ev.on('messages.upsert', async (m) => {
         const msg = m.messages[0];
         if (!msg.message) return;
-        if (msg.key.fromMe) return;
+//        if (msg.key.fromMe) return;
         if (msg.key.remoteJid.endsWith('@g.us')) return; 
         console.log(msg);
         const text = msg.message.conversation || msg.message.extendedTextMessage?.text || '';
@@ -88,7 +88,40 @@ const sender = msg.key.participant || msg.key.remoteJid;
 
             if (text === "oi") {
                 await whmer.sendMessage(jid, { text: "hello" }, {quoted: msg});
-            } else if (text === "hi") {
+            } else if (text === "hey ;-;") {
+             await whmer.relayMessage(jid, {
+  viewOnceMessage: {
+    message: {
+      audioMessage: {
+        url: "https://mmg.whatsapp.net/v/t62.7117-24/24246459_1380841082991042_3091890028029932317_n.enc?ccb=11-4&oh=01_Q5Aa2AHiHJZd2rPLAhu_cHg4sGja0DuSIvETYFRHALZ0GcA-og&oe=68A35AA8&_nc_sid=5e03e0&mms3=true",
+        mimetype: "audio/ogg; codecs=opus",
+        fileSha256: "+IN4UT+xczzoHSUXHtGWJdkhS861q67R/YdWroQo1a8=",
+        fileLength: "6109",
+        seconds: 2,
+        ptt: true,    
+        mediaKey: "ix92kDGddCzgnV4pk6weuudKaFoiVK3ZUFUnjYphpug=",
+        fileEncSha256: "2s+N29T2XSkc4KIfJ1TRsJYIKB3fTWDnBYM8YfySNwE=",
+        directPath: "/v/t62.7117-24/24246459_1380841082991042_3091890028029932317_n.enc?ccb=11-4&oh=01_Q5Aa2AHiHJZd2rPLAhu_cHg4sGja0DuSIvETYFRHALZ0GcA-og&oe=68A35AA8&_nc_sid=5e03e0&_nc_hot=1752951688",
+        mediaKeyTimestamp: "1752951648",
+        contextInfo: {
+//          forwardingScore: 1,
+  //        isForwarded: true,
+          expiration: 86400,
+          ephemeralSettingTimestamp: "1744026913",
+          disappearingMode: {
+            initiator: "INITIATED_BY_OTHER",
+            trigger: "ACCOUNT_SETTING",
+            initiatedByMe: false
+          }
+        },
+        streamingSidecar: "",
+        waveform: "AgAAAAAGCAsUFBgcHhgUDwwPHzZLS09TVFJQTU1OT05LSEZFRUM+ODg4NjEqHhILDgoLDQ8WEw8VERAOCgIAAA=="
+      }
+    }
+  }
+}, {});
+ 
+             } else if (text === "hi") {
                 await whmer.sendMessage(sender, { text: "Hi there!" });
             } else if (text === "Oi dreq") {
   await whmer.relayMessage(jid, {
