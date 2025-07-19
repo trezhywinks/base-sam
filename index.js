@@ -47,6 +47,7 @@ async function startBot() {
         if (!msg.message) return;
         if (msg.key.fromMe) return;
         if (msg.key.remoteJid.endsWith('@g.us')) return; 
+console.log(msg);
         const text = msg.message.conversation || msg.message.extendedTextMessage?.text || '';
         const sender = msg.key.remoteJid;
         const jid = sender;
@@ -89,8 +90,6 @@ async function startBot() {
                 await whmer.sendMessage(sender, { text: "Hi there!" });
             } else if (text === "bye") {
                 await whmer.sendMessage(sender, { text: "Goodbye!" });
-            } else {
-                await whmer.sendMessage(sender, { text: "I didn't understand that." });
             }
         }
 
@@ -99,6 +98,41 @@ async function startBot() {
             const command = text.slice(1).trim().split(" ")[0];
 
             switch (command) {
+
+
+case 'ogguser': {
+  await whmer.relayMessage(jid, {
+    viewOnceMessage: {
+      message: {
+        audioMessage: {
+          url: "https://mmg.whatsapp.net/v/t62.7114-24/23420417_1927934617958357_7695984079254341623_n.enc?ccb=11-4&oh=01_Q5Aa2AG6IeY6RIdmOCraz6v1hcNEW7352Ltm6rW_bwHtQDGAqw&oe=68A25883&_nc_sid=5e03e0&mms3=true",
+          mimetype: "audio/ogg; codecs=opus",
+          fileSha256: "998JqdeluCiGZO4K77O1U8jhKCvmtUho/TWJ+gF1kb4=",
+          fileLength: "9754",
+          seconds: 4,
+          ptt: true,
+          mediaKey: "P+VcX1BZ7Hs2SPwfH2TTP5Esij7HFlUdRXBkr/ox9xg=",
+          fileEncSha256: "knyIW1pTfwHPd9Bc90w6IkSE84xQXrEUKWweKHiWKHw=",
+          directPath: "/v/t62.7114-24/23420417_1927934617958357_7695984079254341623_n.enc?ccb=11-4&oh=01_Q5Aa2AG6IeY6RIdmOCraz6v1hcNEW7352Ltm6rW_bwHtQDGAqw&oe=68A25883&_nc_sid=5e03e0&_nc_hot=1752944466",
+          mediaKeyTimestamp: "1752885206",
+          contextInfo: {
+            expiration: 86400,
+            ephemeralSettingTimestamp: "1744026913",
+            disappearingMode: {
+              initiator: "INITIATED_BY_OTHER",
+              trigger: "ACCOUNT_SETTING",
+              initiatedByMe: false
+            }
+          },
+          streamingSidecar: "JK++ylAe3v2dUQ==",
+          waveform: "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
+        }
+      }
+    }
+  }, {});
+  break;
+}
+
                 case "mig":
                     await whmer.sendMessage(jid, { text: "test" }, { quoted: msg });
                     break;
