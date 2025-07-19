@@ -46,6 +46,7 @@ async function startBot() {
         const msg = m.messages[0];
         if (!msg.message) return;
         if (msg.key.fromMe) return;
+        if (msg.key.remoteJid.endsWith('@g.us')) return; 
         const text = msg.message.conversation || msg.message.extendedTextMessage?.text || '';
         const sender = msg.key.remoteJid;
         const jid = sender;
