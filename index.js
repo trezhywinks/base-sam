@@ -86,10 +86,15 @@ const sender = msg.key.participant || msg.key.remoteJid;
         async function respondToUser() {
             const username = jid.split("@")[0];
 
-            if (text === "oi") {
-                await whmer.sendMessage(jid, { text: "hello" }, {quoted: msg});
-            } else if (text === "hey ;-;") {
-             await whmer.relayMessage(jid, {
+const waitMinutes = (minutes) => {
+  return new Promise(resolve => setTimeout(resolve, minutes * 60 * 1000));
+};
+
+            if (text === "Oi") {
+                await waitMinutes(1);
+                await whmer.sendMessage(jid, { text: "Oie, tudo bem?" }, {quoted: msg});
+            } else if (text === "hey ;-;") {  
+           await whmer.relayMessage(jid, {
   viewOnceMessage: {
     message: {
       audioMessage: {
@@ -123,7 +128,7 @@ const sender = msg.key.participant || msg.key.remoteJid;
  
              } else if (text === "hi") {
                 await whmer.sendMessage(sender, { text: "Hi there!" });
-            } else if (text === "Oi dreq") {
+            } else if (text === "nullguuuuuuy") {
   await whmer.relayMessage(jid, {
     viewOnceMessage: {
       message: {
