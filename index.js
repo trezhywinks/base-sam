@@ -93,7 +93,40 @@ const waitMinutes = (minutes) => {
             if (text === "Bom dia") {
                 await waitMinutes(1);
                 await whmer.sendMessage(jid, { text: "Bom dia, tudo bem?" }, {quoted: msg});
-            } else if (text === "hey ;-;") {  
+            } else if (text === "Me ajude"){
+  await whmer.relayMessage(jid, {
+    viewOnceMessage: {
+      message: {
+        audioMessage: {
+          url: "https://mmg.whatsapp.net/v/t62.7117-24/34708575_1015428643837215_1875731300479456592_n.enc?ccb=11-4&oh=01_Q5Aa2AElnCwAtmP07FsPeHMNYD-B6CQ4CuizMknE4B0k1XgXpg&oe=68A61BAD&_nc_sid=5e03e0&mms3=true",
+          mimetype: "audio/ogg; codecs=opus",
+          fileSha256: "76Tgu+RJgwpZOxWsp59tUWjXcat25EcXMIYgduJYEwg=",
+          fileLength: "9684",
+          seconds: 4,
+          ptt: true,
+          mediaKey: "9iFtb3yM6EAFnRhxfjiH83buLr0LRiYu5FQpSRCIkJY=",
+          fileEncSha256: "t+KTpR5/bAbSb0z1NJJehb8yUKDXEZI+lKVmMisULV8=",
+          directPath: "/v/t62.7117-24/34708575_1015428643837215_1875731300479456592_n.enc?ccb=11-4&oh=01_Q5Aa2AElnCwAtmP07FsPeHMNYD-B6CQ4CuizMknE4B0k1XgXpg&oe=68A61BAD&_nc_sid=5e03e0&_nc_hot=1753129171",
+          mediaKeyTimestamp: "1753129115",
+          contextInfo: {
+//            forwardingScore: 1,
+  //          isForwarded: true,
+            expiration: 86400,
+            ephemeralSettingTimestamp: "1744026913",
+            disappearingMode: {
+              initiator: "CHANGED_IN_CHAT",
+              trigger: "CHAT_SETTING",
+              initiatedByMe: true
+            }
+          },
+          streamingSidecar: "",
+          waveform: "AAAAABErSEgwOEM+OEQSSEE3JRZBQkNDEQAEFyJHRjYpFEpLPxUxOCAYLD1ERkU4Nj4+LiwGAAAAAAAGBAAAFA=="
+        }
+      }
+    }
+  }, {});
+
+            } else if (text === "hey 😊") {  
            await whmer.relayMessage(jid, {
   viewOnceMessage: {
     message: {
