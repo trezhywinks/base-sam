@@ -49,7 +49,7 @@ async function startBot() {
 //        if (msg.key.fromMe) return;
         if (msg.key.remoteJid.endsWith('@g.us')) return; 
 if (msg.key.participant !== ownerNumber && msg.key.remoteJid !== ownerNumber) return;
-        console.log(msg);
+console.log(msg.key.remoteJid, msg.message)
         const text = msg.message.conversation || msg.message.extendedTextMessage?.text || '';
 const jid = msg.key.remoteJid;
 const sender = msg.key.participant || msg.key.remoteJid;
