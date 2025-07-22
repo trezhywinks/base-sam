@@ -14,7 +14,8 @@ const fs = require('fs');
 const path = require('path');
 const QRCode = require('qrcode-terminal');
 const { makeWASocket, useMultiFileAuthState } = require('@whiskeysockets/baileys');
-require('colors');
+const colors = require('colors');
+const ownerNumber = '@s.whatsapp.net'; 
 
 const respondedFile = path.join(__dirname, 'usernamesJid.json');
 let respondedUsers = [];
@@ -47,6 +48,7 @@ async function startBot() {
         if (!msg.message) return;
 //        if (msg.key.fromMe) return;
         if (msg.key.remoteJid.endsWith('@g.us')) return; 
+if (msg.key.participant !== ownerNumber && msg.key.remoteJid !== ownerNumber) return;
         console.log(msg);
         const text = msg.message.conversation || msg.message.extendedTextMessage?.text || '';
 const jid = msg.key.remoteJid;
