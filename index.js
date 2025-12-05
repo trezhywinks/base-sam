@@ -24,9 +24,16 @@ async function startBot() {
     const { state, saveCreds } = await useMultiFileAuthState('sessao');
 
     const whmer = makeWASocket({
-        auth: state,
-        //printQRInTerminal: true,
-    });
+    auth: state,
+    logger: P({ level: "silent" }),
+    version: [2, 3000, 0],
+    printQRInTerminal: false,  
+    syncFullHistory: false,
+    browser: ['Chrome (Linux)', '', ''],
+    useChrome: true,
+    mobile: false,  
+    markOnlineOnConnect: false
+});
 
     whmer.ev.on('creds.update', saveCreds);
 
