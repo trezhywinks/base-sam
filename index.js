@@ -23,10 +23,10 @@ let respondedUsers = [];
 async function startBot() {
     const { state, saveCreds } = await useMultiFileAuthState('sessao');
 
-    //const whmer = makeWASocket({
-        //auth: state,
+    const whmer = makeWASocket({
+        auth: state,
         //printQRInTerminal: true,
-    //});
+    });
 
     whmer.ev.on('creds.update', saveCreds);
 
