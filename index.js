@@ -8,7 +8,7 @@
 //const { useMultiFileAuthState, downloadMediaMessage } = require('@whiskeysockets/baileys');
 //const QRCode = require('qrcode-terminal');
 //const colors = require('colors');
-//const prefix = "_"; 
+const prefix = "_"; 
 
 const fs = require('fs');
 const path = require('path');
@@ -25,7 +25,7 @@ async function startBot() {
 
     const whmer = makeWASocket({
         auth: state,
-        //printQRInTerminal: true,
+        printQRInTerminal: true,
     });
 
     whmer.ev.on('creds.update', saveCreds);
